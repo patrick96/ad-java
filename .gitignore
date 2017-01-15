@@ -1,4 +1,21 @@
 *.class
+*.swp
+*.tmp
+*.log
+
+# Gradle
+/.gradle/
+
+# IntelliJ IDEA files
+/*.iml
+/.idea/
+
+# Eclipse
+/.classpath
+/.project
+/.settings/
+/bin/
+/build/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
