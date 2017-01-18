@@ -9,9 +9,9 @@ I plan to implement the following algorithms and abstract data types/data struct
 Whenever I finish implementing something, I will tick it off here.
 
 ### Algorithms
-- [ ] Binary Search
-- [ ] Linear Search
-- [ ] Interpolation Search (maybe)
+- [X] [Binary Search](src/main/patrick96/ad_java/search/Search.java)
+- [X] [Linear Search](src/main/patrick96/ad_java/search/Search.java)
+- [ ] ~~Interpolation Search~~
 - [ ] Bubblesort
 - [ ] Insertionsort
 - [ ] Selectionsort
