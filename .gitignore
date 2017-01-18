@@ -16,6 +16,7 @@
 /.settings/
 /bin/
 /build/
+/workbench.xmi
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
