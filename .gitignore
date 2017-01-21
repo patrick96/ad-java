@@ -2,6 +2,7 @@
 *.swp
 *.tmp
 *.log
+/.vimrc_local
 
 # Gradle
 /.gradle/
