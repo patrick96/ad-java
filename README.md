@@ -2,9 +2,7 @@
 
 As a preparation for my "Algorithms and Data Structures" exam, I will implement some of them here using java.
 
-## TODO
-I have not yet implemented anything, expect the first programs soon.
-
+## Plans
 I plan to implement the following algorithms and abstract data types/data structures, it is possible that I will not do all of them, either because I don't have time or because I deem some of them too time-consuming for the benefit they give me.
 Whenever I finish implementing something, I will tick it off here.
 
@@ -12,7 +10,7 @@ Whenever I finish implementing something, I will tick it off here.
 - [X] [Binary Search](src/main/patrick96/ad_java/search/Search.java)
 - [X] [Linear Search](src/main/patrick96/ad_java/search/Search.java)
 - [ ] ~~Interpolation Search~~
-- [ ] Bubblesort
+- [X] [Bubblesort](src/main/patrick96/ad_java/sort/Sort.java)
 - [ ] Insertionsort
 - [ ] Selectionsort
 - [ ] Mergesort
