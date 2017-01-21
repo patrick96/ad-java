@@ -2,6 +2,10 @@ package patrick96.ad_java.search;
 
 public class Search {
 
+    public static <T extends Comparable<T>> int binarySearch(T[] array, T needle) {
+        return binarySearch(array, needle, 0, array.length - 1);
+    }
+
     /**
      * Performs a binary search on a sorted (in ascending order) array
      * 
@@ -17,13 +21,12 @@ public class Search {
      *
      * @param array The array sorted in ascending order of distinct comparable objects to search in
      * @param needle The not null element to search for inside the array
+     * @param left The leftmost array index that should still be included in the search
+     * @param right The rightmost array index that should still be included in the search
      * @return A non-negative integer representing the index where the needle was found
      *         -1 if the element could not be found
      */
-    public static <T extends Comparable<T>> int binarySearch(T[] array, T needle) {
-        // Lower and upper bounds of the search space
-        int left = 0;
-        int right = array.length - 1;
+    public static <T extends Comparable<T>> int binarySearch(T[] array, T needle, int left, int right) {
 
         while(left <= right) {
             /* 
@@ -55,6 +58,11 @@ public class Search {
         return -1;
     }
 
+
+    public static <T extends Comparable<T>> int linearSearch(T[] array, T needle) {
+        return binarySearch(array, needle, 0, array.length - 1);
+    }
+
     /**
      * Performs a linear search on an unsorted array
      * 
@@ -65,11 +73,13 @@ public class Search {
      *
      * @param array The array of distinct comparable objects to be searched
      * @param needle The not null element to search for inside the array
+     * @param left The leftmost array index that should still be included in the search
+     * @param right The rightmost array index that should still be included in the search
      * @return A non-negative integer representing the index where the needle was found
      *         -1 if the element could not be found
      */
-    public static <T extends Comparable<T>> int linearSearch(T[] array, T needle) {
-        for (int i = 0; i < array.length; i++) {
+    public static <T extends Comparable<T>> int linearSearch(T[] array, T needle, int left, int right) {
+        for (int i = left; i <= right; i++) {
             if(needle.compareTo(array[i]) == 0) {
                 return i;
             }
