@@ -82,4 +82,17 @@ public class SortTest {
         }
     }
 
+    @Test
+    public void mergeSortStraightTest() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            int[] array = TestUtils.getRandomArray(1000);
+            int[] original = array.clone();
+
+            int[] sorted = Sort.mergeSortStraight(array);
+            
+            assertEquals(sorted, array);
+            assertCorrectSort(original, array);
+        }
+    }
+
 }

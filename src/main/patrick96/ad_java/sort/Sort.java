@@ -247,7 +247,47 @@ public class Sort {
         mergeSortRecursive(array, middle + 1, right);
 
         merge(array, left, middle, right);
+        return array;
+    }
 
+    /**
+     * Performs a bottom-up non-recursive mergersort on the given array
+     * 
+     * The bottom-up approach works by dividing up dividing up the array in subarrays
+     * of length 1, then merging adjacent subarrays. Now we have sorted subarrays of length 2
+     * which we can merge and so on. After each iteration the length of the sorted subarrays 
+     * doubles. If there is an uneven amount of sorted subarrays, the last subarray will not be 
+     * merged, but might be in the next iteration and at the very least will be merged on the 
+     * last iteration (if n = 2^k + 1).
+     * Since this approach does not use recursion, the size of the array does not impact the
+     * functionality
+     * 
+     * Time Complexity:
+     * Key comparisons: O(n * log(n))
+     * Key swaps      : O(n * log(n))
+     * 
+     * Space Complextiy O(n)
+     *
+     * @param array
+     * @return
+     */
+    public static int[] mergeSortStraight(int[] array) {
+        int n = array.length;
+        // Length of the subarrays
+        int len = 1;
+        while(len < n) {
+            // The first index of the two subarrays to be merged
+            int left = 0;
+            while(left + len < n) {
+                // The middle is the index of the last element in the first subarray
+                int middle = left + len - 1;
+                merge(array, left, middle, Math.min(middle + len, n - 1));
+                // Left is now one after the last element of the second subarray
+                left = middle + len + 1;
+            }
+
+            len *= 2;
+        }
         return array;
     }
     
