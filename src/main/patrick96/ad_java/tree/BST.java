@@ -2,7 +2,7 @@ package patrick96.ad_java.tree;
 
 /**
  * Implementation of a binary search tree
- * For any given node the following holds:
+ * For any given node the following (called the searchtree condition) holds:
  * All the elements in the left subtree are smaller
  * All the elements in the right subtree are greater
  * 
@@ -10,6 +10,11 @@ package patrick96.ad_java.tree;
  * only keys are stored which would make this a set of ints
  * Theoretically non-primitive data types can be stored
  * as long as they have a notion of order (e.g. Comparable)
+ *
+ * Since the searchtree condition is required for this tree all the public operations
+ * insert, contains, delete run in O(h) where h is the height of the tree. This is because
+ * any element has a unique position in a tree so all of these operations only need to
+ * traverse the tree a constant number of times to get to the position where they need to operate
  */
 public class BST extends BinaryTree {
 
@@ -174,7 +179,7 @@ public class BST extends BinaryTree {
      *         Otherwise the parent node of the would-be position of the key
      *         Never returns null
      */
-    public BST find(int key) {
+    protected BST find(int key) {
         BST iterator = this;
         while(true) {
             if(key < iterator.key) {

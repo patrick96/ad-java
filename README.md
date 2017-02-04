@@ -25,7 +25,7 @@ Whenever I finish implementing something, I will tick it off here.
 ### ADT / Data Structures
 - [ ] Stack / Multistack
 - [ ] Queue
-- [ ] Priority Queue (using a binary Heap)
+- [ ] Min-Heap/Max-Heap
 - [X] [Binary Searchtree](src/main/patrick96/ad_java/tree/BST.java)
 - [ ] AVL Tree
 - [ ] Union-Find
