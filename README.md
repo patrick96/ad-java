@@ -15,7 +15,7 @@ Whenever I finish implementing something, I will tick it off here.
 - [X] [Selectionsort](src/main/patrick96/ad_java/sort/Sort.java)
 - [X] [Mergesort](src/main/patrick96/ad_java/sort/Sort.java)
 - [ ] Heapsort
-- [ ] Quicksort
+- [X] [Quicksort](src/main/patrick96/ad_java/sort/Sort.java)
 - [ ] DFS / BFS
 - [ ] Topological Order
 - [ ] Dijkstra

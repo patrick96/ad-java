@@ -95,4 +95,17 @@ public class SortTest {
         }
     }
 
+    @Test
+    public void quicksortTest() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            int[] array = TestUtils.getRandomArray(1000);
+            int[] original = array.clone();
+
+            int[] sorted = Sort.quicksort(array, 0, array.length - 1);
+            
+            assertEquals(sorted, array);
+            assertCorrectSort(original, array);
+        }
+    }
+
 }

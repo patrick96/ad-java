@@ -233,8 +233,8 @@ public class Sort {
      * Space Complextiy O(n)
      *
      * @param array
-     * @param left
-     * @param right
+     * @param left Left bound to be sorted (inclusive)
+     * @param right Right bound to be sorted (inclusive)
      * @return The given array with the subarray from index left to right (inclusive) sorted
      */
     public static int[] mergeSortRecursive(int[] array, int left, int right) {
@@ -288,6 +288,94 @@ public class Sort {
 
             len *= 2;
         }
+        return array;
+    }
+
+    /**
+     * Performs a quicksort on the given array in the given range
+     * 
+     * Quicksort is a Divide-and-Conquer approach to sorting.
+     * The idea is to choose a so-called pivot element, the array now has to be
+     * modified in such a way that there is a place in the array where all the elements
+     * to the left are less than or equals to the pivot and all the elements to the right
+     * are greater or equal to the pivot.
+     * Now the pivot can be swapped to this index and the arrays to the left and the right
+     * can be recursively sorted.
+     * This partitioning of the array can be achieved by iterating from the left and the 
+     * right of the array until from the left an element is found that is greater than the pivot
+     * and from the right one that is less than the pivot. If the element found from the left
+     * is to the left of the element found from the right then they are on the wrong side and
+     * need to be swapped. This is done until the iteration index from the left passes the 
+     * iteration index from the right.
+     * After that the pivot and the iteration index from the left can be swapped and the
+     * subarrays recursively sorted.
+     *
+     * Since this is recursive, it has the same problem as the recursive mergesort but the
+     * software stack that java uses to handle the recursion can just be implemented to convert
+     * it into an iterative alorithm.
+     *
+     * Time Complexity:
+     *  Worst Case:
+     *      Key Comparisons: O(n^2)
+     *      Key swaps      : O(n * log(n))
+     *
+     *  In real world applications is the worst case extremely rare and thus the
+     *  average case of O(n * log(n) for both key comparisons and swaps is often stated
+     *
+     *
+     * Space Complexity: O(log(n))
+     *
+     * @param array
+     * @param left
+     * @param right
+     * @return The given array with the range from left to right (inclusive) sorted
+     */
+    public static int[] quicksort(int[] array, int left, int right) {
+        // The range contains one or less elements
+        if(left >= right) {
+            return array;
+        }
+
+        // The pivot is always chosen as the rightmost element
+        int pivot = array[right]; 
+        // Indices for the iteration from the left and right respectively
+        int i = left, j = right - 1;
+
+        // Loops until the i passes j
+        do {
+            // Find from the left an element that is greater than the pivot
+            while(i < right) {
+                if(array[i] > pivot) {
+                    break;
+                }
+                i++;
+            }
+
+            // Find from the right an element that is less than the pivot
+            while(j > left) {
+                if(array[j] < pivot) {
+                    break;
+                }
+
+                j--;
+            }
+
+            if(i < j) {
+                // Swap the elements that are on the wrong side
+                Utils.swap(array, i, j);
+            }
+        } while(i < j);
+
+        /*
+         * since i is always on an element that is greater than the pivot the pivot
+         * can just be swapped with it
+         */
+        Utils.swap(array, i, right);
+
+        // Recursively sort the subarrays
+        quicksort(array, left, i - 1);
+        quicksort(array, i + 1, right);
+
         return array;
     }
     
