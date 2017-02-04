@@ -12,7 +12,7 @@ Whenever I finish implementing something, I will tick it off here.
 - [ ] ~~Interpolation Search~~
 - [X] [Bubblesort](src/main/patrick96/ad_java/sort/Sort.java)
 - [X] [Insertionsort](src/main/patrick96/ad_java/sort/Sort.java)
-- [ ] Selectionsort
+- [X] [Selectionsort](src/main/patrick96/ad_java/sort/Sort.java)
 - [ ] Mergesort
 - [ ] Heapsort
 - [ ] Quicksort

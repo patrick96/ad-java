@@ -115,5 +115,51 @@ public class Sort {
 
         return array;
     }
+
+    /**
+     * Performs a sort by selection on the given array
+     * 
+     * Selectionsort assumes that the first k elements of the given array contains the
+     * k smallest elements of the array in the right oder, it will then search the remaining
+     * array for the smallest element and swap that element with the (k + 1)th element and thus
+     * expands the sorted array.
+     * 
+     * Time Complexity:
+     * Key comparisons: O(n^2)
+     * Key swaps      : O(n)
+     *
+     * @param array
+     * @return
+     */
+    public static int[] selectionSort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n; i++) {
+            /*
+             * Invariant: The first i elements of the array are sorted and contain the
+             * first i smallest elements of the array
+             */
+
+            /*
+             * Search for the smallest element in the remaining array
+             */
+            int min = array[i];
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if(array[j] < min) {
+                    minIndex = j;
+                    min = array[j];
+                }
+            }
+
+            /*
+             * Since the smallest element in the remaining array is still greater or equals
+             * to any of the elements in the sorted subarray, it can just be put at the end of
+             * the sorted array thus increasing the size of the sorted array by one
+             */
+            Utils.swap(array, i, minIndex);
+        }
+
+        return array;
+    }
     
 }
