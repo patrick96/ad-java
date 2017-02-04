@@ -163,6 +163,60 @@ public class Sort {
     }
 
     /**
+     * Merges the two sorted subarrays into a single sorted array
+     * The two subarrays are the ones from left to middle (inclusive) and from
+     * middle + 1 to right (inclusive)
+     * 
+     * Time Complexity:
+     * Key Comparisons: O(right - left)
+     * Key wap        : O(right - left)
+     *
+     * @param array
+     * @param left
+     * @param middle
+     * @param right
+     */
+    private static void merge(int[] array, int left, int middle, int right) {
+        int[] merged = new int[right - left + 1];
+        int i = left, j = middle + 1, k = 0;
+        while(i <= middle && j <= right) {
+            if(array[i] <= array[j]) {
+                merged[k] = array[i];
+                i++;
+            }
+            else {
+                merged[k] = array[j];
+                j++;
+            }
+            
+            k++;
+        }
+
+        /*
+         * The merging will finish as soon as all elements of one array was completely
+         * added to the merged array
+         * Here we just attach the remaining part of the array that was not fully merged
+         */
+        while(i <= middle) {
+            merged[k] = array[i];
+            i++;
+            k++;
+        }
+        while(j <= right) {
+            merged[k] = array[j];
+            j++;
+            k++;
+        }
+
+        /*
+         * Reinsert the merged subarray into the array
+         */
+        for (i = left; i <= right; i++) {
+            array[i] = merged[i - left];
+        }
+    }
+
+    /**
      * Performs mergesort recursively on the given array 
      * 
      * Mergesort is a Divide-And-Conquer approach to sorting, it splits the array in half
@@ -191,43 +245,8 @@ public class Sort {
         int middle = (left + right) / 2;
         mergeSortRecursive(array, left, middle);
         mergeSortRecursive(array, middle + 1, right);
-        int[] merged = new int[right - left + 1];
 
-        // Merge
-        int i = left, j = middle + 1, k = 1;
-        while(i <= middle && j <= right) {
-            if(array[i] <= array[j]) {
-                merged[k] = array[i];
-                i++;
-            }
-            else {
-                merged[k] = array[j];
-                j++;
-            }
-            
-            k++;
-        }
-
-        /*
-         * The merging will finish as soon as all elements of one array was completely
-         * added to the merged array
-         * Here we just attach the remaining part of the array that was not fully merged
-         */
-        while(i <= middle) {
-            merged[k] = array[i];
-            k++;
-        }
-        while(j <= right) {
-            merged[k] = array[j];
-            k++;
-        }
-
-        /*
-         * Reinsert the merged subarray into the array
-         */
-        for (i = left; i <= right; i++) {
-            array[i] = merged[i - left];
-        }
+        merge(array, left, middle, right);
 
         return array;
     }

@@ -75,7 +75,7 @@ public class SortTest {
             int[] array = TestUtils.getRandomArray(1000);
             int[] original = array.clone();
 
-            int[] sorted = Sort.insertionSort(array);
+            int[] sorted = Sort.mergeSortRecursive(array, 0, array.length - 1);
             
             assertEquals(sorted, array);
             assertCorrectSort(original, array);
