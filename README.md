@@ -11,7 +11,7 @@ Whenever I finish implementing something, I will tick it off here.
 - [X] [Linear Search](src/main/patrick96/ad_java/search/Search.java)
 - [ ] ~~Interpolation Search~~
 - [X] [Bubblesort](src/main/patrick96/ad_java/sort/Sort.java)
-- [ ] Insertionsort
+- [X] [Insertionsort](src/main/patrick96/ad_java/sort/Sort.java)
 - [ ] Selectionsort
 - [ ] Mergesort
 - [ ] Heapsort

@@ -33,7 +33,7 @@ public class SortTest {
     @Test
     public void bubbleSortTest() throws Exception {
         for (int i = 0; i < 1000; i++) {
-            int[] array = TestUtils.getRandomArray(100);
+            int[] array = TestUtils.getRandomArray(1000);
             int[] original = array.clone();
 
             int[] sorted = Sort.bubbleSort(array);
@@ -42,4 +42,19 @@ public class SortTest {
             assertCorrectSort(original, array);
         }
     }
+
+
+    @Test
+    public void insertionSortTest() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            int[] array = TestUtils.getRandomArray(1000);
+            int[] original = array.clone();
+
+            int[] sorted = Sort.insertionSort(array);
+            
+            assertEquals(sorted, array);
+            assertCorrectSort(original, array);
+        }
+    }
+
 }
