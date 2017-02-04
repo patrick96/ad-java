@@ -23,8 +23,9 @@ public class Search {
      * @param needle The not null element to search for inside the array
      * @param left The leftmost array index that should still be included in the search
      * @param right The rightmost array index that should still be included in the search
-     * @return A non-negative integer representing the index where the needle was found
-     *         -1 if the element could not be found
+     * @return A non-negative integer representing the index where the needle was found in the given range
+     *         otherwise a negative integer k, where |k| - 1 is the index the given needle 
+     *         would be inserted into the array
      */
     public static <T extends Comparable<T>> int binarySearch(T[] array, T needle, int left, int right) {
 
@@ -55,7 +56,7 @@ public class Search {
             }
         }
 
-        return -1;
+        return -(left + 1);
     }
 
 

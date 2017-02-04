@@ -2,6 +2,7 @@ package patrick96.ad_java.search;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.Test;
@@ -38,6 +39,15 @@ public class SearchTest {
             for (int j = 0; j < array.length; j++) {
                 int result = Search.binarySearch(array, array[j]);
                 assertEquals(j, result);
+            }
+
+            /*
+             * Search for random elements
+             * The return value should be the same as the one given by Arrays.binarySearch
+             */
+            for (int j = 0; j < 10000; j++) {
+                int val = rand.nextInt(1000000000);
+                assertEquals(Arrays.binarySearch(array, 0, array.length, val), Search.binarySearch(array, val));
             }
         }
     }
