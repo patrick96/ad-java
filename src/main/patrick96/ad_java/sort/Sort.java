@@ -161,5 +161,75 @@ public class Sort {
 
         return array;
     }
+
+    /**
+     * Performs mergesort recursively on the given array 
+     * 
+     * Mergesort is a Divide-And-Conquer approach to sorting, it splits the array in half
+     * and sorts each half recursively and then merges these two arrays into a signle sorted
+     * array
+     * 
+     * The problem with the recursive approach is that large arrays will lead to a 
+     * StackOverflow
+     * 
+     * Time Complexity:
+     * Key comparisons: O(n * log(n))
+     * Key swaps      : O(n * log(n))
+     * 
+     * Space Complextiy O(n)
+     *
+     * @param array
+     * @param left
+     * @param right
+     * @return The given array with the subarray from index left to right (inclusive) sorted
+     */
+    public static int[] mergeSortRecursive(int[] array, int left, int right) {
+        if(left == right) {
+            return array;
+        }
+
+        int middle = (left + right) / 2;
+        mergeSortRecursive(array, left, middle);
+        mergeSortRecursive(array, middle + 1, right);
+        int[] merged = new int[right - left + 1];
+
+        // Merge
+        int i = left, j = middle + 1, k = 1;
+        while(i <= middle && j <= right) {
+            if(array[i] <= array[j]) {
+                merged[k] = array[i];
+                i++;
+            }
+            else {
+                merged[k] = array[j];
+                j++;
+            }
+            
+            k++;
+        }
+
+        /*
+         * The merging will finish as soon as all elements of one array was completely
+         * added to the merged array
+         * Here we just attach the remaining part of the array that was not fully merged
+         */
+        while(i <= middle) {
+            merged[k] = array[i];
+            k++;
+        }
+        while(j <= right) {
+            merged[k] = array[j];
+            k++;
+        }
+
+        /*
+         * Reinsert the merged subarray into the array
+         */
+        for (i = left; i <= right; i++) {
+            array[i] = merged[i - left];
+        }
+
+        return array;
+    }
     
 }

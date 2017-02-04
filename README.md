@@ -13,7 +13,7 @@ Whenever I finish implementing something, I will tick it off here.
 - [X] [Bubblesort](src/main/patrick96/ad_java/sort/Sort.java)
 - [X] [Insertionsort](src/main/patrick96/ad_java/sort/Sort.java)
 - [X] [Selectionsort](src/main/patrick96/ad_java/sort/Sort.java)
-- [ ] Mergesort
+- [X] [Mergesort](src/main/patrick96/ad_java/sort/Sort.java)
 - [ ] Heapsort
 - [ ] Quicksort
 - [ ] DFS / BFS
