@@ -26,6 +26,6 @@ Whenever I finish implementing something, I will tick it off here.
 - [ ] Stack / Multistack
 - [ ] Queue
 - [ ] Priority Queue (using a binary Heap)
-- [ ] Binary Searchtree
+- [X] [Binary Searchtree](src/main/patrick96/ad_java/tree/BST.java)
 - [ ] AVL Tree
 - [ ] Union-Find
