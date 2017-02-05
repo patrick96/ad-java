@@ -2,6 +2,8 @@ package patrick96.ad_java.tree;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.*;
 
 public class BSTTest {
@@ -129,5 +131,53 @@ public class BSTTest {
         assertEquals(7, root.right.right.left.key);
         assertEquals(100, root.right.right.right.key);
         assertEquals(90, root.right.right.right.left.key);
+    }
+
+    @Test
+    public void preorderTest() throws Exception {
+        root.insert(7);
+        root.insert(5);
+        root.insert(10);
+        root.insert(8);
+        root.insert(11);
+        root.insert(15);
+        root.insert(9);
+
+        int[] result = root.preorder();
+        int[] expected = {-1, 7, 5, 10, 8, 9, 11, 15};
+
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void postorderTest() throws Exception {
+        root.insert(7);
+        root.insert(5);
+        root.insert(10);
+        root.insert(8);
+        root.insert(11);
+        root.insert(15);
+        root.insert(9);
+
+        int[] result = root.postorder();
+        int[] expected = {5, 9, 8, 15, 11, 10, 7, -1};
+
+        assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void inorderTest() throws Exception {
+        root.insert(7);
+        root.insert(5);
+        root.insert(10);
+        root.insert(8);
+        root.insert(11);
+        root.insert(15);
+        root.insert(9);
+
+        int[] result = root.inorder();
+        int[] expected = {-1, 5, 7, 8, 9, 10, 11, 15};
+
+        assertArrayEquals(expected, result);
     }
 }

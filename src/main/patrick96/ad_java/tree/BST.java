@@ -1,5 +1,9 @@
 package patrick96.ad_java.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * Implementation of a binary search tree
  * For any given node the following (called the searchtree condition) holds:
@@ -204,5 +208,116 @@ public class BST extends BinaryTree {
         }
 
         return iterator;
+    }
+
+    /**
+     * Traverses the tree in preorder (non-recursive)
+     * 
+     * The preorder traversation saves the key of the current element
+     * then performs a preorder traversation on its left subtree recursively
+     * and then on its right subtree
+     *
+     * @return
+     */
+    public int[] preorder() {
+        List<Integer> order = new ArrayList<>();
+
+        Stack<BST> stack = new Stack<>();
+        stack.push(this);
+
+        while(!stack.isEmpty()) {
+            BST c = stack.pop();
+
+            order.add(c.key);
+
+            if(c.right != null) {
+                stack.push(c.right);
+            }
+
+            if(c.left != null) {
+                stack.push(c.left);
+            }
+        }
+
+        return order.stream().mapToInt(Integer::valueOf).toArray();
+    }
+
+    /**
+     * Traverses the tree in postorder (non-recursive)
+     * 
+     * The postorder traversal first traverses the left and then the
+     * right subtree in postorder and only then the current node
+     *
+     * @return
+     */
+    public int[] postorder() {
+        Stack<BST> S1 = new Stack<>();
+        Stack<BST> S2 = new Stack<>();
+
+        S1.push(this);
+
+        while(!S1.isEmpty()) {
+            BST c = S1.pop();
+            S2.push(c);
+            if(c.left != null) {
+                S1.push(c.left);
+            }
+
+            if(c.right != null) {
+                S1.push(c.right);
+            }
+        }
+
+        int[] order = new int[S2.size()];
+
+        int i = 0;
+        while(!S2.empty()) {
+            order[i] = S2.pop().key;
+            i++;
+        }
+
+        return order;
+    }
+
+
+    /**
+     * Traverses the tree in inordre (non-recursive)
+     * 
+     * Inorder traverses first the left subtree in inorder then the current node
+     * and then the right subtree
+     * 
+     * Because this is a searchtree the inorder traversal is at the same time
+     * also a traversal in ascending key value
+     *
+     * @return
+     */
+    public int[] inorder() {
+        List<Integer> order = new ArrayList<>();
+
+        Stack<BST> stack = new Stack<>();
+
+        BST root = this;
+
+        while(root != null) {
+            stack.push(root);
+            root = root.left;
+        }
+
+        while(!stack.isEmpty()) {
+            BST c = stack.pop();
+            order.add(c.key);
+
+            if(c.right != null) {
+                c = c.right;
+
+                // The next node we need to visit is on the far left
+                while(c != null) {
+                    stack.push(c);
+                    c = c.left;
+                }
+            }
+        }
+
+        return order.stream().mapToInt(Integer::valueOf).toArray();
     }
 }
