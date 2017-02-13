@@ -2,11 +2,7 @@
 
 As a preparation for my "Algorithms and Data Structures" exam, I will implement some of them here using java.
 
-## Plans
-I plan to implement the following algorithms and abstract data types/data structures, it is possible that I will not do all of them, either because I don't have time or because I deem some of them too time-consuming for the benefit they give me.
-Whenever I finish implementing something, I will tick it off here.
-
-### Algorithms
+## Algorithms
 - [X] [Binary Search](src/main/patrick96/ad_java/search/Search.java)
 - [X] [Linear Search](src/main/patrick96/ad_java/search/Search.java)
 - [ ] ~~Interpolation Search~~
@@ -14,18 +10,7 @@ Whenever I finish implementing something, I will tick it off here.
 - [X] [Insertionsort](src/main/patrick96/ad_java/sort/Sort.java)
 - [X] [Selectionsort](src/main/patrick96/ad_java/sort/Sort.java)
 - [X] [Mergesort](src/main/patrick96/ad_java/sort/Sort.java)
-- [ ] Heapsort
 - [X] [Quicksort](src/main/patrick96/ad_java/sort/Sort.java)
-- [ ] DFS / BFS
-- [ ] Topological Order
-- [ ] Dijkstra
-- [ ] Transitive Closure
-- [ ] Min. Spaning Tree
 
-### ADT / Data Structures
-- [ ] Stack / Multistack
-- [ ] Queue
-- [ ] Min-Heap/Max-Heap
+## ADT / Data Structures
 - [X] [Binary Searchtree](src/main/patrick96/ad_java/tree/BST.java)
-- [ ] AVL Tree
-- [ ] Union-Find
