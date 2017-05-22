@@ -2,6 +2,10 @@ repositories {
     mavenCentral()
 }
 
+import org.gradle.internal.logging.text.StyledTextOutput
+import org.gradle.internal.logging.text.StyledTextOutputFactory
+import static org.gradle.internal.logging.text.StyledTextOutput.Style
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin:'application'
@@ -25,19 +29,59 @@ sourceSets {
 test {
     testLogging {
         // set options for log level LIFECYCLE
-        events "failed", "skipped";
-        exceptionFormat "full"
-        events 'standard_error'
+        events "failed";
+        exceptionFormat "full";
+        // events 'standard_error';
+        // showStandardStreams = true;
 
         // set options for log level DEBUG
         debug {
-            events "started", "skipped", "failed";
+            events "started", "skipped", "passed", "failed";
             exceptionFormat "full";
         }
 
-        // remove standard output/error logging from --info builds
-        // by assigning only 'failed' and 'skipped' events
         info.events = ["failed", "skipped", "passed"];
+    }
+
+    // Colored output
+    def out = services.get(StyledTextOutputFactory).create("colored-test-output").style(Style.Normal);
+
+    beforeSuite { suite ->
+        if (suite.name.startsWith("Gradle Test Run") || suite.name.startsWith("Gradle Test Executor")) {
+            return;
+        }
+        out.println("\n" + suite.name);
+    }
+
+    afterTest { descriptor, result ->
+        def style = Style.Normal;
+        if (result.failedTestCount > 0) {
+            style = Style.Failure;
+        } else if (result.skippedTestCount > 0) {
+            style = Style.ProgressStatus;
+        } else {
+            style = Style.Identifier;
+        }
+
+        out.text("    ").withStyle(style).println(descriptor.name);
+    }
+
+    afterSuite { desc, result -> 
+        /* 
+         * We only want the summary once so we check if parrent is null
+         * If any test failed, gradle will give us a summary
+         */
+        if(desc.getParent() == null && result.failedTestCount == 0) {
+            def msg = "${result.testCount - result.skippedTestCount}/${result.testCount} tests completed";
+
+            if(result.skippedTestCount > 0) {
+                msg += ", ${result.skippedTestCount} skipped";
+            }
+
+            def style = result.skippedTestCount > 0 ? Style.ProgressStatus : Style.Identifier;
+
+            out.text("\n").withStyle(style).println(msg);
+        }
     }
 }
 
